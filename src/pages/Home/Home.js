@@ -5,6 +5,7 @@ import HowItWorksSection from "./HomeComponents/HowItWorksSection";
 import ServicesSection from "./HomeComponents/ServicesSection";
 import ServicesAreaSection from "./HomeComponents/ServicesAreaSection";
 import CallToActionSection from "./HomeComponents/CallToActionSection";
+import FloatingButtons from "./HomeComponents/FloatingButtons"; 
 import AdvertisingSection from "./HomeComponents/AdvertisingSection";
 import PricingSection from "./HomeComponents/PricingSection";
 import PortfolioSection from "./HomeComponents/PortfolioSection";
@@ -25,16 +26,7 @@ const Home = () => {
       <ServicesSection />
       <ServicesAreaSection />
       <CallToActionSection />
-      <AdvertisingSection />
-      <PricingSection />
-      <PortfolioSection />
-      <TestimonialsSection />
-      <ClientsSection />
-      <StatsSection />
-      <FAQSection />
-      <NewsletterSection />
-      <LatestBlogSection />
-      <ContactSection />
+      <FloatingButtons />
     </main>
   );
 };
