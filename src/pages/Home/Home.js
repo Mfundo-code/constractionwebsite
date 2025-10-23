@@ -19,7 +19,6 @@ import ContactSection from "./HomeComponents/ContactSection";
 const Home = () => {
   return (
     <main>
-      <div>hey i'm Home page</div>
       <HeroSection />
       <FeaturesSection />
       <HowItWorksSection />
