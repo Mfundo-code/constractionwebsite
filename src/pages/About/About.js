@@ -10,18 +10,25 @@ import AboutCTA from "./AboutComponents/AboutCTA";
 
 const About = () => {
   return (
-    <main>
-      <div>hey i'm About page</div>
+    <main style={styles.main}>
       <AboutHero />
       <MissionSection />
-      <HistorySection />
-      <TeamSection />
-      <ValuesSection />
       <StatsSection />
+      <ValuesSection />
       <TimelineSection />
+      <TeamSection />
+      <HistorySection />
       <AboutCTA />
     </main>
   );
+};
+
+const styles = {
+  main: {
+    fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+    color: "#04223A",
+    overflow: "hidden",
+  },
 };
 
 export default About;
