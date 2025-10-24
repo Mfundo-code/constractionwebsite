@@ -82,8 +82,8 @@ export default function FeaturesSection() {
       <svg style={styles.decor1} viewBox="0 0 600 400" preserveAspectRatio="none" aria-hidden>
         <defs>
           <linearGradient id="bgg1" x1="0" x2="1">
-            <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="#06d6a0" stopOpacity="0.08" />
+            <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#06d6a0" stopOpacity="0.18" />
           </linearGradient>
         </defs>
         <path d="M0 120 C140 20 300 180 460 90 C600 20 740 140 900 60 L900 400 L0 400 Z" fill="url(#bgg1)" />
@@ -92,11 +92,22 @@ export default function FeaturesSection() {
       <svg style={styles.decor2} viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden>
         <defs>
           <radialGradient id="bgg2" cx="50%" cy="30%">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.16" />
-            <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+            <stop offset="0%" stopColor="#118ab2" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="#118ab2" stopOpacity="0" />
           </radialGradient>
         </defs>
         <circle cx="200" cy="50" r="180" fill="url(#bgg2)" />
+      </svg>
+
+      {/* Additional decorative element */}
+      <svg style={styles.decor3} viewBox="0 0 500 300" preserveAspectRatio="none" aria-hidden>
+        <defs>
+          <linearGradient id="bgg3" x1="0" x2="1">
+            <stop offset="0%" stopColor="#ef476f" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#ffd166" stopOpacity="0.08" />
+          </linearGradient>
+        </defs>
+        <path d="M0 200 C150 120 250 280 400 180 L500 250 L500 300 L0 300 Z" fill="url(#bgg3)" />
       </svg>
 
       <div style={styles.container} className="features-layout">
@@ -177,30 +188,48 @@ const styles = {
   section: {
     position: "relative",
     padding: "64px 20px",
-    background:
-      "radial-gradient(1000px 400px at 10% 10%, rgba(124,58,237,0.12) 0%, rgba(6,214,160,0.06) 35%, rgba(250,250,255,1) 100%)",
+    background: `
+      radial-gradient(1200px 500px at 15% 15%, rgba(124,58,237,0.22) 0%, transparent 50%),
+      radial-gradient(1000px 400px at 85% 25%, rgba(6,214,160,0.18) 0%, transparent 45%),
+      radial-gradient(900px 450px at 35% 75%, rgba(17,138,178,0.15) 0%, transparent 50%),
+      radial-gradient(800px 350px at 70% 85%, rgba(239,71,111,0.12) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(242,245,255,1) 0%, rgba(230,240,255,1) 100%)
+    `,
     fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
     color: "#072039",
     overflow: "hidden",
+    border: "1px solid rgba(124,58,237,0.1)",
+    boxShadow: "0 8px 32px rgba(124,58,237,0.08)",
   },
   decor1: {
     position: "absolute",
-    top: "-6%",
-    right: "-10%",
-    width: "60%",
-    height: "46%",
+    top: "-8%",
+    right: "-12%",
+    width: "70%",
+    height: "50%",
     zIndex: 0,
     pointerEvents: "none",
     opacity: 0.95,
   },
   decor2: {
     position: "absolute",
-    left: "-8%",
-    top: "-8%",
-    width: "30%",
-    height: "30%",
+    left: "-10%",
+    top: "-12%",
+    width: "40%",
+    height: "40%",
     zIndex: 0,
     pointerEvents: "none",
+    opacity: 0.9,
+  },
+  decor3: {
+    position: "absolute",
+    bottom: "-15%",
+    right: "20%",
+    width: "50%",
+    height: "40%",
+    zIndex: 0,
+    pointerEvents: "none",
+    opacity: 0.85,
   },
   container: {
     maxWidth: 1180,

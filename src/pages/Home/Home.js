@@ -21,11 +21,11 @@ const Home = () => {
   return (
     <main>
       <HeroSection />
+      <CallToActionSection />
       <FeaturesSection />
       <HowItWorksSection />
       <ServicesSection />
       <ServicesAreaSection />
-      <CallToActionSection />
       <FloatingButtons />
     </main>
   );

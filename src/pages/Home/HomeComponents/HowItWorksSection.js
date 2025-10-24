@@ -157,9 +157,17 @@ function hexToRgba(hex, a = 1) {
 const styles = {
   section: {
     padding: "56px 20px",
-    background: "linear-gradient(180deg, rgba(250,251,255,1) 0%, rgba(244,249,255,1) 100%)",
+    background: `
+      radial-gradient(800px 400px at 15% 10%, rgba(124,58,237,0.15) 0%, transparent 60%),
+      radial-gradient(700px 350px at 85% 30%, rgba(6,214,160,0.12) 0%, transparent 55%),
+      radial-gradient(600px 300px at 40% 80%, rgba(17,138,178,0.1) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(245,248,255,1) 0%, rgba(235,245,255,1) 100%)
+    `,
     fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
     color: "#072039",
+    border: "1px solid rgba(124,58,237,0.08)",
+    boxShadow: "0 4px 24px rgba(124,58,237,0.06)",
+    position: "relative",
   },
   container: {
     maxWidth: 1180,

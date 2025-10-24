@@ -6,17 +6,18 @@ import PricingSection from "./ServicesComponents/PricingSection";
 import FAQSection from "./ServicesComponents/FAQSection";
 import ComparisonTable from "./ServicesComponents/ComparisonTable";
 import ServicesCTA from "./ServicesComponents/ServicesCTA";
+import ServicesSection from "./ServicesComponents/ServicesSection";
+import CallToActionSection from "./ServicesComponents/CallToActionSection";
 
 const Services = () => {
   return (
     <main>
       <div>hey i'm Services page</div>
       <ServicesHero />
-      <ServicesAreaSection />
+      <ServicesSection />
       <ServiceCard />
-      <PricingSection />
+       <CallToActionSection />
       <FAQSection />
-      <ComparisonTable />
       <ServicesCTA />
     </main>
   );
