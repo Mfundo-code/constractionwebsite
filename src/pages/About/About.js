@@ -13,11 +13,7 @@ const About = () => {
     <main style={styles.main}>
       <AboutHero />
       <MissionSection />
-      <StatsSection />
       <ValuesSection />
-      <TimelineSection />
-      <TeamSection />
-      <HistorySection />
       <AboutCTA />
     </main>
   );

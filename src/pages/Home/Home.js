@@ -23,8 +23,8 @@ const Home = () => {
       <HeroSection />
       <CallToActionSection />
       <FeaturesSection />
-      <HowItWorksSection />
       <ServicesSection />
+      <HowItWorksSection />
       <ServicesAreaSection />
       <FloatingButtons />
     </main>

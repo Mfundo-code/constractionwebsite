@@ -12,7 +12,6 @@ import CallToActionSection from "./ServicesComponents/CallToActionSection";
 const Services = () => {
   return (
     <main>
-      <div>hey i'm Services page</div>
       <ServicesHero />
       <ServicesSection />
       <ServiceCard />
