@@ -60,59 +60,146 @@ export default function ServicesSection() {
   return (
     <section style={styles.section} aria-labelledby="services-heading">
       <style>{`
-        @keyframes cardFloat {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-6px); }
-          100% { transform: translateY(0px); }
-        }
-
         @keyframes popIn {
           from { opacity: 0; transform: translateY(8px) scale(.98); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* small responsive tweaks for the grid */
-        @media (max-width: 880px) {
-          .services-grid { grid-template-columns: repeat(2, 1fr); }
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 18px;
         }
-        @media (max-width: 560px) {
-          .services-grid { grid-template-columns: 1fr; }
+
+        .service-card {
+          display: flex;
+          gap: 14px;
+          align-items: flex-start;
+          padding: 18px;
+          will-change: transform, box-shadow;
+        }
+
+        .service-card:hover {
+          transform: translateY(-6px) scale(1.006);
+          box-shadow: 0 26px 68px rgba(2,6,23,0.12);
+        }
+
+        .icon-wrap {
+          flex: 0 0 64px;
+        }
+
+        .card-body {
+          flex: 1;
+        }
+
+        .card-actions {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        /* Tablet: 2 columns */
+        @media (max-width: 880px) {
+          .services-grid { 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 16px;
+          }
+        }
+
+        /* Mobile: 1 column + vertical card layout */
+        @media (max-width: 768px) {
+          .services-grid { 
+            grid-template-columns: 1fr; 
+            gap: 20px;
+          }
+
+          .service-card {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 32px 24px;
+          }
+
+          .icon-wrap {
+            flex: none;
+            margin-bottom: 16px;
+          }
+
+          .card-body {
+            width: 100%;
+          }
+
+          .card-actions {
+            justify-content: center;
+          }
+        }
+
+        /* Section padding adjustments */
+        @media (max-width: 768px) {
+          .services-section { 
+            padding: 40px 16px; 
+          }
+          
+          .section-header { 
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+          }
+          
+          .cta-wrap { 
+            margin-left: 0;
+            width: 100%;
+          }
+          
+          .ghost-btn {
+            width: 100%;
+            text-align: center;
+          }
+        }
+
+        /* Disable hover effects on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+          .service-card:hover {
+            transform: none;
+            box-shadow: 0 14px 36px rgba(2,6,23,0.06);
+          }
         }
       `}</style>
 
-      <div style={styles.header}>
+      <div className="section-header" style={styles.header}>
         <div>
           <h2 id="services-heading" style={styles.title}>What you can do</h2>
           <p style={styles.lead}>Playable lessons, playful learning — built for learners and classrooms. Pick an activity and get started in seconds.</p>
         </div>
-        <div style={styles.ctaWrap}>
-          <button style={styles.ghostBtn} onClick={() => window.location.href = "#learn-more"} aria-label="Explore learning library">
+        <div className="cta-wrap" style={styles.ctaWrap}>
+          <button className="ghost-btn" style={styles.ghostBtn} onClick={() => window.location.href = "#learn-more"} aria-label="Explore learning library">
             Explore Library →
           </button>
         </div>
       </div>
 
-      <div className="services-grid" style={styles.grid} role="list">
+      <div className="services-grid" role="list">
         {services.map((s, i) => (
           <article
             key={s.id}
             role="listitem"
             aria-labelledby={`svc-${s.id}-title`}
+            className="service-card"
             style={{
               ...styles.card,
               animation: `popIn 420ms cubic-bezier(.2,.9,.25,1) ${i * 80}ms both`,
             }}
           >
-            <div style={{ ...styles.iconWrap, boxShadow: `0 10px 30px ${hexToRgba(s.accent, 0.12)}` }}>
+            <div className="icon-wrap" style={{ ...styles.iconWrap, boxShadow: `0 10px 30px ${hexToRgba(s.accent, 0.12)}` }}>
               <div style={{ ...styles.iconCircle, background: `linear-gradient(180deg, ${hexToRgba(s.accent, 0.14)}, ${hexToRgba(s.accent, 0.06)})`, color: s.accent }}>
                 {s.icon}
               </div>
             </div>
 
-            <div style={styles.cardBody}>
+            <div className="card-body">
               <h3 id={`svc-${s.id}-title`} style={styles.cardTitle}>{s.title}</h3>
               <p style={styles.cardDesc}>{s.desc}</p>
-              <div style={styles.cardActions}>
+              <div className="card-actions">
                 <a
                   href="#"
                   style={{ ...styles.link, color: s.accent }}
@@ -131,7 +218,6 @@ export default function ServicesSection() {
 
 /* ---------- helpers & centralized styles ---------- */
 function hexToRgba(hex, a = 1) {
-  // accept #rgb, #rrggbb
   const h = hex.replace("#", "");
   const bigint = parseInt(h.length === 3 ? h.split("").map(c => c+c).join("") : h, 16);
   const r = (bigint >> 16) & 255;
@@ -181,17 +267,7 @@ const styles = {
     boxShadow: "0 6px 18px rgba(2,6,23,0.04)",
   },
 
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gap: 18,
-  },
-
   card: {
-    display: "flex",
-    gap: 14,
-    alignItems: "flex-start",
-    padding: 18,
     borderRadius: 14,
     background: "linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,255,0.94))",
     boxShadow: "0 14px 36px rgba(2,6,23,0.06)",
@@ -202,7 +278,6 @@ const styles = {
   },
 
   iconWrap: {
-    flex: "0 0 64px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -217,8 +292,6 @@ const styles = {
     justifyContent: "center",
     fontSize: 18,
   },
-
-  cardBody: { flex: 1 },
 
   cardTitle: {
     margin: 0,
@@ -236,34 +309,9 @@ const styles = {
     marginBottom: 10,
   },
 
-  cardActions: { display: "flex", alignItems: "center", gap: 12 },
-
   link: {
     fontSize: 14,
     fontWeight: 700,
     textDecoration: "none",
   },
 };
-
-/* Add interactive hover behaviour via JS-inlined style tweaks using CSS pseudo-like effect.
-   We can't do :hover with inline styles, so add a small script-like enhancement: */
-if (typeof window !== "undefined") {
-  // attach hover effects to cards (non-blocking; safe)
-  setTimeout(() => {
-    try {
-      const styleEl = document.createElement("style");
-      styleEl.innerHTML = `
-        .services-grid > * {
-          will-change: transform, box-shadow;
-        }
-        .services-grid > *:hover {
-          transform: translateY(-6px) scale(1.006);
-          box-shadow: 0 26px 68px rgba(2,6,23,0.12);
-        }
-      `;
-      document.head.appendChild(styleEl);
-    } catch (e) {
-      // silent
-    }
-  }, 200);
-}
