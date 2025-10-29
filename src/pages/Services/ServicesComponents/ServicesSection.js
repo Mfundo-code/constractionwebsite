@@ -67,19 +67,159 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section style={styles.section} aria-labelledby="services-heading">
-      <div style={styles.inner}>
-        <header style={styles.header}>
-          <h2 id="services-heading" style={styles.title}>
+    <section style={styles.section} aria-labelledby="services-heading" className="services-section">
+      <style jsx>{`
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+          .services-section {
+            padding: 3.5rem 1.5rem !important;
+          }
+
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1rem !important;
+          }
+
+          .services-header {
+            text-align: center !important;
+          }
+
+          .services-lead {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .services-hero-ctas {
+            justify-content: center !important;
+          }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+          .services-section {
+            padding: 3rem 1.25rem !important;
+          }
+
+          .services-title {
+            font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+          }
+
+          .services-lead {
+            font-size: 1rem !important;
+            max-width: 480px !important;
+          }
+
+          .services-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+
+          .services-card {
+            padding: 1.25rem !important;
+            min-height: auto !important;
+          }
+
+          .services-hero-ctas {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+          }
+
+          .services-hero-primary,
+          .services-hero-ghost {
+            width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+          }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+          .services-section {
+            padding: 2.5rem 1rem !important;
+          }
+
+          .services-title {
+            font-size: 1.75rem !important;
+          }
+
+          .services-lead {
+            font-size: 0.9rem !important;
+            padding: 0 0.5rem !important;
+          }
+
+          .services-card {
+            padding: 1rem !important;
+            flex-direction: column !important;
+            text-align: center !important;
+            align-items: center !important;
+            gap: 1rem !important;
+          }
+
+          .services-card-left {
+            width: 100% !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            gap: 1rem !important;
+          }
+
+          .services-card-body {
+            width: 100% !important;
+          }
+
+          .services-card-footer {
+            justify-content: center !important;
+          }
+
+          .services-card-cta,
+          .services-card-link {
+            width: 100% !important;
+            text-align: center !important;
+          }
+
+          .services-footer-note {
+            font-size: 0.9rem !important;
+            padding: 1rem !important;
+            text-align: center !important;
+          }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+          .services-inner {
+            max-width: 1300px !important;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .services-card {
+            transition: none !important;
+          }
+        }
+
+        /* Hover effects for non-touch devices */
+        @media (hover: hover) and (pointer: fine) {
+          .services-card:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 12px 36px rgba(2,6,23,0.12) !important;
+          }
+        }
+      `}</style>
+
+      <div style={styles.inner} className="services-inner">
+        <header style={styles.header} className="services-header">
+          <h2 id="services-heading" style={styles.title} className="services-title">
             What we do — Make kids love computing
           </h2>
-          <p style={styles.lead}>
+          <p style={styles.lead} className="services-lead">
             We teach computing, programming, robotics and AI in a way that feels like play. Short, scaffolded activities + teacher
             tools = confident learners. Below are the core services we offer for classrooms and schools.
           </p>
-          <div style={styles.heroCtas}>
+          <div style={styles.heroCtas} className="services-hero-ctas">
             <button
               style={{ ...styles.heroPrimary }}
+              className="services-hero-primary"
               onClick={() => (window.location.hash = "#contact-sales")}
               aria-label="Contact sales about services"
             >
@@ -92,13 +232,14 @@ export default function ServicesSection() {
               }}
               href="#curriculum"
               style={styles.heroGhost}
+              className="services-hero-ghost"
             >
               View curriculum →
             </a>
           </div>
         </header>
 
-        <div style={styles.grid} role="list">
+        <div style={styles.grid} className="services-grid" role="list">
           {services.map((s, i) => (
             <ServiceCard
               key={s.title}
@@ -112,7 +253,7 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        <div style={styles.footerNote}>
+        <div style={styles.footerNote} className="services-footer-note">
           <strong>Want a custom program?</strong>{" "}
           We create tailored pathways for schools — contact us to build a plan that fits your curriculum and devices.
         </div>
@@ -134,8 +275,9 @@ function ServiceCard({ title, description, tag, accent = "#7c3aed", onClick = ()
         ...cardStyles.card,
         borderColor: "rgba(4,34,58,0.04)",
       }}
+      className="services-card"
     >
-      <div style={cardStyles.left}>
+      <div style={cardStyles.left} className="services-card-left">
         <div
           style={{
             ...cardStyles.iconWrap,
@@ -143,17 +285,18 @@ function ServiceCard({ title, description, tag, accent = "#7c3aed", onClick = ()
             border: `1px solid ${hexWithAlpha(accent, 0.12)}`,
             color: accent,
           }}
+          className="services-card-icon-wrap"
           aria-hidden
         >
           {serviceIcon(index)}
         </div>
-        {tag ? <div style={cardStyles.tag}>{tag}</div> : null}
+        {tag ? <div style={cardStyles.tag} className="services-card-tag">{tag}</div> : null}
       </div>
 
-      <div style={cardStyles.body}>
-        <h3 style={cardStyles.title}>{title}</h3>
-        <p style={cardStyles.desc}>{description}</p>
-        <div style={cardStyles.footer}>
+      <div style={cardStyles.body} className="services-card-body">
+        <h3 style={cardStyles.title} className="services-card-title">{title}</h3>
+        <p style={cardStyles.desc} className="services-card-desc">{description}</p>
+        <div style={cardStyles.footer} className="services-card-footer">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -163,6 +306,7 @@ function ServiceCard({ title, description, tag, accent = "#7c3aed", onClick = ()
               ...cardStyles.cta,
               background: `linear-gradient(90deg, ${accent}, ${blendHex(accent, "#06D6A0", 0.45)})`,
             }}
+            className="services-card-cta"
             aria-label={`Learn more about ${title}`}
           >
             Learn more
@@ -176,6 +320,7 @@ function ServiceCard({ title, description, tag, accent = "#7c3aed", onClick = ()
               window.location.hash = "#contact";
             }}
             style={cardStyles.link}
+            className="services-card-link"
           >
             Contact →
           </a>
@@ -346,32 +491,7 @@ const styles = {
     padding: "12px 16px",
     borderRadius: 10,
   },
-
-  // responsive
-  "@mediaSmall": {
-    gridTemplateColumns: "1fr",
-  },
 };
-
-/* responsive injection for inline-only environment:
-   if you prefer to use CSS file, convert these styles there.
-   Below we tweak grid via a small runtime friendly approach:
-*/
-(function applyResponsiveGrid() {
-  // no-op in node envs; browsers will ignore when importing module
-  try {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(max-width: 980px)");
-    const root = document;
-    function update() {
-      const grid = root.querySelector && root.querySelector("section[data-services-grid]");
-      // we don't select by data attribute because component is self-contained — this is a safe no-op.
-    }
-    mq.addListener && mq.addListener(update);
-  } catch (e) {
-    /* ignore */
-  }
-})();
 
 /* ----------------- card local styles ----------------- */
 const cardStyles = {

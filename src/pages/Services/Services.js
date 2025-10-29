@@ -15,7 +15,7 @@ const Services = () => {
       <ServicesHero />
       <ServicesSection />
       <ServiceCard />
-       <CallToActionSection />
+      <CallToActionSection />
       <FAQSection />
       <ServicesCTA />
     </main>

@@ -5,33 +5,176 @@ import React from "react";
  */
 export default function ServicesHero() {
   return (
-    <section style={styles.section} aria-labelledby="services-hero-title" role="region">
-      <style>{`
-        @keyframes slideUp { from { opacity: 0; transform: translateY(12px);} to { opacity: 1; transform: translateY(0);} }
-        @keyframes pulse { 0% { transform: scale(1);} 50% { transform: scale(1.02);} 100% { transform: scale(1);} }
+    <section style={styles.section} aria-labelledby="services-hero-title" role="region" className="services-hero-section">
+      <style jsx>{`
+        @keyframes slideUp { 
+          from { opacity: 0; transform: translateY(12px);} 
+          to { opacity: 1; transform: translateY(0);} 
+        }
+        @keyframes pulse { 
+          0% { transform: scale(1);} 
+          50% { transform: scale(1.02);} 
+          100% { transform: scale(1);} 
+        }
 
-        /* small screens stack */
-        @media (max-width: 880px) {
-          .sh-grid { grid-template-columns: 1fr; gap: 22px; }
-          .sh-art { order: -1; }
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+          .services-hero-section {
+            padding: 3.5rem 1.5rem !important;
+          }
+
+          .services-hero-container {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+
+          .services-hero-art {
+            order: -1 !important;
+            justify-content: center !important;
+          }
+
+          .services-hero-panel {
+            grid-column: 1 / -1 !important;
+            text-align: center !important;
+          }
+
+          .services-hero-lead {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .services-hero-bg-radial {
+            left: -15% !important;
+            top: -5% !important;
+            width: 80% !important;
+          }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+          .services-hero-section {
+            padding: 3rem 1.25rem !important;
+          }
+
+          .services-hero-title {
+            font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+          }
+
+          .services-hero-lead {
+            font-size: 1rem !important;
+            max-width: 480px !important;
+          }
+
+          .services-hero-mosaic {
+            width: 100% !important;
+            max-width: 400px !important;
+            height: 200px !important;
+            padding: 1.25rem !important;
+          }
+
+          .services-hero-panel {
+            padding: 1.5rem !important;
+          }
+
+          .services-hero-cta-row {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+          }
+
+          .services-hero-cta-primary,
+          .services-hero-cta-ghost {
+            width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+          }
+
+          .services-hero-bg-radial {
+            display: none !important;
+          }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+          .services-hero-section {
+            padding: 2.5rem 1rem !important;
+          }
+
+          .services-hero-container {
+            gap: 2rem !important;
+          }
+
+          .services-hero-title {
+            font-size: 1.75rem !important;
+          }
+
+          .services-hero-lead {
+            font-size: 0.9rem !important;
+            padding: 0 0.5rem !important;
+          }
+
+          .services-hero-mosaic {
+            height: 180px !important;
+            padding: 1rem !important;
+          }
+
+          .services-hero-panel {
+            padding: 1.25rem !important;
+          }
+
+          .services-hero-list-item {
+            padding: 0.75rem !important;
+            text-align: left !important;
+          }
+
+          .services-hero-cta-primary {
+            padding: 12px 16px !important;
+            font-size: 14px !important;
+          }
+
+          .services-hero-cta-ghost {
+            padding: 10px 12px !important;
+            font-size: 13px !important;
+          }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+          .services-hero-container {
+            max-width: 1300px !important;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .services-hero-mosaic {
+            animation: none !important;
+          }
         }
 
         /* hover for pointer devices */
         @media (hover: hover) and (pointer: fine) {
-          .sh-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 48px rgba(7,124,237,0.18); }
+          .sh-cta-primary:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 18px 48px rgba(7,124,237,0.18); 
+          }
         }
 
         /* focus-visible for accessibility */
-        .sh-cta-primary:focus-visible, .sh-cta-ghost:focus-visible { outline: 3px solid rgba(124,58,237,0.18); outline-offset: 3px; border-radius: 10px; }
+        .sh-cta-primary:focus-visible, .sh-cta-ghost:focus-visible { 
+          outline: 3px solid rgba(124,58,237,0.18); 
+          outline-offset: 3px; 
+          border-radius: 10px; 
+        }
       `}</style>
 
       {/* stronger shared radial background to align with other heroes */}
-      <div style={styles.bgRadial} aria-hidden />
+      <div style={styles.bgRadial} aria-hidden className="services-hero-bg-radial" />
 
-      <div style={styles.container} className="sh-grid">
+      <div style={styles.container} className="services-hero-container sh-grid">
         {/* Left: artwork / mosaic */}
-        <div style={styles.artWrap} className="sh-art" aria-hidden>
-          <div style={styles.mosaic}>
+        <div style={styles.artWrap} className="services-hero-art sh-art" aria-hidden>
+          <div style={styles.mosaic} className="services-hero-mosaic">
             <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMid meet" style={styles.mosaicSvg}>
               <rect x="6" y="6" width="60" height="48" rx="6" fill="#7c3aed" opacity="0.98" />
               <rect x="70" y="6" width="50" height="48" rx="8" fill="#06d6a0" opacity="0.98" />
@@ -47,42 +190,42 @@ export default function ServicesHero() {
               </g>
             </svg>
 
-            <div style={styles.mosaicBadge} aria-hidden>
-              <div style={styles.badgeCount}>5+</div>
-              <div style={styles.badgeLabel}>Years in schools</div>
+            <div style={styles.mosaicBadge} aria-hidden className="services-hero-mosaic-badge">
+              <div style={styles.badgeCount} className="services-hero-badge-count">5+</div>
+              <div style={styles.badgeLabel} className="services-hero-badge-label">Years in schools</div>
             </div>
           </div>
         </div>
 
         {/* Right: content panel */}
-        <div style={styles.panel} role="article" aria-labelledby="services-hero-title">
-          <h2 id="services-hero-title" style={styles.title}>Services that bring learning to life</h2>
+        <div style={styles.panel} className="services-hero-panel" role="article" aria-labelledby="services-hero-title">
+          <h2 id="services-hero-title" style={styles.title} className="services-hero-title">Services that bring learning to life</h2>
 
-          <p style={styles.lead}>
+          <p style={styles.lead} className="services-hero-lead">
             We build playful mini-games, teacher tools, and classroom-ready packages that help learners practice
             math and logic through hands-on interactions. Safe by default, built for classroom use.
           </p>
 
-          <ul style={styles.list} aria-label="Key services">
-            <li style={styles.listItem}>
+          <ul style={styles.list} className="services-hero-list" aria-label="Key services">
+            <li style={styles.listItem} className="services-hero-list-item">
               <strong>Interactive mini-games</strong>
-              <div style={styles.itemSub}>Short sessions that teach concepts with playful mechanics.</div>
+              <div style={styles.itemSub} className="services-hero-item-sub">Short sessions that teach concepts with playful mechanics.</div>
             </li>
 
-            <li style={styles.listItem}>
+            <li style={styles.listItem} className="services-hero-list-item">
               <strong>Teacher dashboard</strong>
-              <div style={styles.itemSub}>Easy grouping, progress reports and class controls.</div>
+              <div style={styles.itemSub} className="services-hero-item-sub">Easy grouping, progress reports and class controls.</div>
             </li>
 
-            <li style={styles.listItem}>
+            <li style={styles.listItem} className="services-hero-list-item">
               <strong>Custom curriculum packs</strong>
-              <div style={styles.itemSub}>Standards-aligned modules for lessons and homework.</div>
+              <div style={styles.itemSub} className="services-hero-item-sub">Standards-aligned modules for lessons and homework.</div>
             </li>
           </ul>
 
-          <div style={styles.ctaRow}>
+          <div style={styles.ctaRow} className="services-hero-cta-row">
             <button
-              className="sh-cta-primary"
+              className="sh-cta-primary services-hero-cta-primary"
               style={styles.ctaPrimary}
               onClick={() => (window.location.hash = "#contact-sales")}
               aria-label="Contact sales"
@@ -91,7 +234,7 @@ export default function ServicesHero() {
             </button>
 
             <a
-              className="sh-cta-ghost"
+              className="sh-cta-ghost services-hero-cta-ghost"
               href="#pricing"
               style={styles.ctaGhost}
               onClick={(e) => { e.preventDefault(); window.location.hash = "#pricing"; }}
