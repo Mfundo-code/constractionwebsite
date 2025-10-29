@@ -5,20 +5,179 @@ import React from "react";
  */
 export default function ProjectsHero() {
   return (
-    <section style={styles.section} aria-labelledby="projects-hero-title" role="region">
-      <style>{`
-        @keyframes slideUp { from { opacity: 0; transform: translateY(12px);} to { opacity: 1; transform: translateY(0);} }
-
-        /* Responsive stacking */
-        @media (max-width: 768px) {
-          .projects-grid { grid-template-columns: 1fr; gap: 20px; }
-          .projects-image { order: -1; }
+    <section style={styles.section} aria-labelledby="projects-hero-title" role="region" className="projects-hero-section">
+      <style jsx>{`
+        @keyframes slideUp { 
+          from { opacity: 0; transform: translateY(12px);} 
+          to { opacity: 1; transform: translateY(0);} 
         }
 
-        /* Hover effects */
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+          .projects-hero-section {
+            padding: 3.5rem 1.5rem !important;
+          }
+
+          .projects-hero-container {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+
+          .projects-hero-panel {
+            grid-column: 1 / -1 !important;
+            text-align: center !important;
+          }
+
+          .projects-hero-lead {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .projects-hero-image {
+            order: -1 !important;
+            justify-content: center !important;
+          }
+
+          .projects-hero-bg-radial {
+            right: -15% !important;
+            top: -5% !important;
+            width: 80% !important;
+          }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+          .projects-hero-section {
+            padding: 3rem 1.25rem !important;
+          }
+
+          .projects-hero-title {
+            font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+          }
+
+          .projects-hero-lead {
+            font-size: 1rem !important;
+            max-width: 480px !important;
+          }
+
+          .projects-hero-panel {
+            padding: 1.5rem !important;
+          }
+
+          .projects-hero-metrics {
+            justify-content: center !important;
+            gap: 1.5rem !important;
+          }
+
+          .projects-hero-cta-row {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+          }
+
+          .projects-hero-cta-primary,
+          .projects-hero-cta-ghost {
+            width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+          }
+
+          .projects-hero-image-container {
+            height: 220px !important;
+            max-width: 100% !important;
+          }
+
+          .projects-hero-floating-card {
+            display: none !important;
+          }
+
+          .projects-hero-bg-radial {
+            display: none !important;
+          }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+          .projects-hero-section {
+            padding: 2.5rem 1rem !important;
+          }
+
+          .projects-hero-container {
+            gap: 2rem !important;
+          }
+
+          .projects-hero-title {
+            font-size: 1.75rem !important;
+          }
+
+          .projects-hero-lead {
+            font-size: 0.9rem !important;
+            padding: 0 0.5rem !important;
+          }
+
+          .projects-hero-panel {
+            padding: 1.25rem !important;
+          }
+
+          .projects-hero-metrics {
+            flex-direction: column !important;
+            gap: 1rem !important;
+            align-items: center !important;
+          }
+
+          .projects-hero-metric-item {
+            flex: none !important;
+            width: 100% !important;
+            max-width: 200px !important;
+          }
+
+          .projects-hero-metric-number {
+            font-size: 1.5rem !important;
+          }
+
+          .projects-hero-metric-label {
+            font-size: 0.8rem !important;
+          }
+
+          .projects-hero-image-container {
+            height: 200px !important;
+          }
+
+          .projects-hero-cta-primary {
+            padding: 12px 16px !important;
+            font-size: 14px !important;
+          }
+
+          .projects-hero-cta-ghost {
+            padding: 10px 12px !important;
+            font-size: 13px !important;
+          }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+          .projects-hero-container {
+            max-width: 1300px !important;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .projects-hero-panel {
+            animation: none !important;
+          }
+        }
+
+        /* Hover effects for non-touch devices */
         @media (hover: hover) and (pointer: fine) {
-          .projects-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(7,124,237,0.15); }
-          .project-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(2,6,23,0.12); }
+          .projects-hero-cta-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 12px 32px rgba(7,124,237,0.15); 
+          }
+          .project-card:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 35px rgba(2,6,23,0.12); 
+          }
         }
 
         /* Focus styles */
@@ -31,39 +190,39 @@ export default function ProjectsHero() {
       `}</style>
 
       {/* Background gradient */}
-      <div style={styles.bgRadial} aria-hidden />
+      <div style={styles.bgRadial} aria-hidden className="projects-hero-bg-radial" />
 
-      <div style={styles.container} className="projects-grid">
+      <div style={styles.container} className="projects-hero-container projects-grid">
         {/* Left: Content panel */}
-        <div style={styles.panel} role="article" aria-labelledby="projects-hero-title">
-          <h1 id="projects-hero-title" style={styles.title}>
+        <div style={styles.panel} className="projects-hero-panel" role="article" aria-labelledby="projects-hero-title">
+          <h1 id="projects-hero-title" style={styles.title} className="projects-hero-title">
             Bringing digital learning to every village
           </h1>
 
-          <p style={styles.lead}>
+          <p style={styles.lead} className="projects-hero-lead">
             We deploy solar-powered learning stations and train local educators to teach computer skills 
             in remote communities.
           </p>
 
           {/* Project impact metrics */}
-          <div style={styles.metrics} aria-label="Project impact statistics">
-            <div style={styles.metricItem}>
-              <div style={styles.metricNumber}>42+</div>
-              <div style={styles.metricLabel}>Villages</div>
+          <div style={styles.metrics} className="projects-hero-metrics" aria-label="Project impact statistics">
+            <div style={styles.metricItem} className="projects-hero-metric-item">
+              <div style={styles.metricNumber} className="projects-hero-metric-number">42+</div>
+              <div style={styles.metricLabel} className="projects-hero-metric-label">Villages</div>
             </div>
-            <div style={styles.metricItem}>
-              <div style={styles.metricNumber}>3.2k</div>
-              <div style={styles.metricLabel}>Children</div>
+            <div style={styles.metricItem} className="projects-hero-metric-item">
+              <div style={styles.metricNumber} className="projects-hero-metric-number">3.2k</div>
+              <div style={styles.metricLabel} className="projects-hero-metric-label">Children</div>
             </div>
-            <div style={styles.metricItem}>
-              <div style={styles.metricNumber}>89%</div>
-              <div style={styles.metricLabel}>Retention</div>
+            <div style={styles.metricItem} className="projects-hero-metric-item">
+              <div style={styles.metricNumber} className="projects-hero-metric-number">89%</div>
+              <div style={styles.metricLabel} className="projects-hero-metric-label">Retention</div>
             </div>
           </div>
 
-          <div style={styles.ctaRow}>
+          <div style={styles.ctaRow} className="projects-hero-cta-row">
             <button
-              className="projects-cta-primary"
+              className="projects-cta-primary projects-hero-cta-primary"
               style={styles.ctaPrimary}
               onClick={() => (window.location.hash = "#support-projects")}
               aria-label="Support our projects"
@@ -72,7 +231,7 @@ export default function ProjectsHero() {
             </button>
 
             <a
-              className="projects-cta-ghost"
+              className="projects-cta-ghost projects-hero-cta-ghost"
               href="#see-impact"
               style={styles.ctaGhost}
               onClick={(e) => { e.preventDefault(); window.location.hash = "#see-impact"; }}
@@ -84,9 +243,9 @@ export default function ProjectsHero() {
         </div>
 
         {/* Right: Image panel */}
-        <div style={styles.imagePanel} className="projects-image" aria-hidden>
-          <div style={styles.imageContainer}>
-            <div style={styles.mainImage} role="img" aria-label="Children learning computer skills in village">
+        <div style={styles.imagePanel} className="projects-hero-image projects-image" aria-hidden>
+          <div style={styles.imageContainer} className="projects-hero-image-container">
+            <div style={styles.mainImage} className="projects-hero-main-image" role="img" aria-label="Children learning computer skills in village">
               <img 
                 src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                 alt="Children learning computer skills"
@@ -95,11 +254,11 @@ export default function ProjectsHero() {
             </div>
 
             {/* Compact floating cards */}
-            <div style={styles.floatingCard} className="project-card">
-              <div style={styles.cardIcon}>💻</div>
-              <div style={styles.cardContent}>
-                <div style={styles.cardTitle}>First computer</div>
-                <div style={styles.cardText}>Age 9</div>
+            <div style={styles.floatingCard} className="projects-hero-floating-card project-card">
+              <div style={styles.cardIcon} className="projects-hero-card-icon">💻</div>
+              <div style={styles.cardContent} className="projects-hero-card-content">
+                <div style={styles.cardTitle} className="projects-hero-card-title">First computer</div>
+                <div style={styles.cardText} className="projects-hero-card-text">Age 9</div>
               </div>
             </div>
           </div>
