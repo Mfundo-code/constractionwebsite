@@ -9,30 +9,197 @@ import React from "react";
 export default function AboutHero() {
   return (
     <section style={styles.section} aria-labelledby="about-hero-title" role="region">
-      <style>{`
+      <style jsx>{`
         /* subtle floating for decorative circles */
-        @keyframes floatSlow { 0% { transform: translateY(0);} 50% { transform: translateY(-8px);} 100% { transform: translateY(0);} }
+        @keyframes floatSlow { 
+          0% { transform: translateY(0);} 
+          50% { transform: translateY(-8px);} 
+          100% { transform: translateY(0);} 
+        }
         /* fade-up entrance */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+        @keyframes fadeUp { 
+          from { opacity: 0; transform: translateY(10px);} 
+          to { opacity: 1; transform: translateY(0);} 
+        }
 
-        /* responsive */
-        @media (max-width: 880px) {
-          .about-grid { grid-template-columns: 1fr; gap: 22px; }
-          .about-visual { justify-content: center; }
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+          .about-hero-section {
+            padding: 3.5rem 1.5rem !important;
+          }
+
+          .about-hero-container {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+
+          .about-hero-left {
+            grid-column: 1 / -1 !important;
+            text-align: center !important;
+            padding-right: 0 !important;
+          }
+
+          .about-hero-lead {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .about-hero-kv-row {
+            justify-content: center !important;
+          }
+
+          .about-hero-right {
+            grid-column: 1 / -1 !important;
+            justify-content: center !important;
+          }
+
+          .about-hero-decor-top {
+            right: -15% !important;
+            top: -5% !important;
+            width: 80% !important;
+          }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+          .about-hero-section {
+            padding: 3rem 1.25rem !important;
+          }
+
+          .about-hero-title {
+            font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+          }
+
+          .about-hero-lead {
+            font-size: 1rem !important;
+            max-width: 480px !important;
+          }
+
+          .about-hero-kv-row {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 1rem !important;
+          }
+
+          .about-hero-kv {
+            width: 100% !important;
+            justify-content: center !important;
+            text-align: center !important;
+          }
+
+          .about-hero-card {
+            padding: 1.25rem !important;
+          }
+
+          .about-hero-visual-area {
+            min-height: 200px !important;
+          }
+
+          .about-hero-decor-top {
+            display: none !important;
+          }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+          .about-hero-section {
+            padding: 2.5rem 1rem !important;
+          }
+
+          .about-hero-container {
+            gap: 2rem !important;
+          }
+
+          .about-hero-title {
+            font-size: 1.75rem !important;
+          }
+
+          .about-hero-lead {
+            font-size: 0.9rem !important;
+            padding: 0 0.5rem !important;
+          }
+
+          .about-hero-card {
+            padding: 1rem !important;
+          }
+
+          .about-hero-visual-area {
+            min-height: 180px !important;
+          }
+
+          .about-hero-kv-num {
+            width: 3rem !important;
+            height: 3rem !important;
+            font-size: 1rem !important;
+          }
+
+          .about-hero-kv-label {
+            font-size: 0.75rem !important;
+          }
+
+          .about-hero-kv-sub {
+            font-size: 0.7rem !important;
+          }
+
+          .about-hero-cta-row {
+            flex-direction: column !important;
+            gap: 0.75rem !important;
+          }
+
+          .about-hero-primary, 
+          .about-hero-secondary {
+            width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+          }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+          .about-hero-container {
+            max-width: 1300px !important;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .about-hero-card {
+            animation: none !important;
+          }
+          
+          .about-hero-circle {
+            animation: none !important;
+          }
         }
 
         /* keyboard focus visible */
-        .about-cta:focus-visible { outline: 3px solid rgba(124,58,237,0.18); outline-offset: 4px; border-radius: 12px; }
+        .about-cta:focus-visible { 
+          outline: 3px solid rgba(124,58,237,0.18); 
+          outline-offset: 4px; 
+          border-radius: 12px; 
+        }
 
         /* hover (pointer devices) */
         @media (hover: hover) and (pointer: fine) {
-          .about-card:hover { transform: translateY(-6px); box-shadow: 0 28px 68px rgba(2,6,23,0.12); }
-          .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(6,214,160,0.12); }
+          .about-card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: 0 28px 68px rgba(2,6,23,0.12); 
+          }
+          .btn-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 14px 36px rgba(6,214,160,0.12); 
+          }
         }
       `}</style>
 
       {/* decorative background shapes (absolute) */}
-      <svg aria-hidden viewBox="0 0 900 400" preserveAspectRatio="none" style={styles.decorTop}>
+      <svg 
+        aria-hidden 
+        viewBox="0 0 900 400" 
+        preserveAspectRatio="none" 
+        style={styles.decorTop}
+        className="about-hero-decor-top"
+      >
         <defs>
           <linearGradient id="ahG1" x1="0" x2="1">
             <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.24" />
@@ -42,39 +209,39 @@ export default function AboutHero() {
         <path d="M0 80 C160 0 340 160 560 80 C720 20 820 140 900 60 L900 400 L0 400 Z" fill="url(#ahG1)"/>
       </svg>
 
-      <div style={styles.container} className="about-grid">
+      <div style={styles.container} className="about-hero-container about-grid">
         {/* Left: copy */}
-        <div style={styles.left}>
-          <h1 id="about-hero-title" style={styles.title}>
+        <div style={styles.left} className="about-hero-left">
+          <h1 id="about-hero-title" style={styles.title} className="about-hero-title">
             We make learning feel like play
           </h1>
 
-          <p style={styles.lead}>
+          <p style={styles.lead} className="about-hero-lead">
             Playful micro-games, gentle progression and instant feedback — built for curious kids and the teachers who guide them.
             We combine delightful animation with research-backed learning patterns so every session is short, fun and meaningful.
           </p>
 
-          <div style={styles.kvRow} aria-hidden>
-            <div style={styles.kv}>
-              <div style={{ ...styles.kvNum, background: "linear-gradient(90deg,#7c3aed,#06d6a0)" }}>K–9</div>
-              <div style={styles.kvText}>
-                <div style={styles.kvLabel}>Grade range</div>
-                <div style={styles.kvSub}>Kid-friendly from kindergarten to grade 9</div>
+          <div style={styles.kvRow} aria-hidden className="about-hero-kv-row">
+            <div style={styles.kv} className="about-hero-kv">
+              <div style={{ ...styles.kvNum, background: "linear-gradient(90deg,#7c3aed,#06d6a0)" }} className="about-hero-kv-num">K–9</div>
+              <div style={styles.kvText} className="about-hero-kv-text">
+                <div style={styles.kvLabel} className="about-hero-kv-label">Grade range</div>
+                <div style={styles.kvSub} className="about-hero-kv-sub">Kid-friendly from kindergarten to grade 9</div>
               </div>
             </div>
 
-            <div style={styles.kv}>
-              <div style={{ ...styles.kvNum, background: "linear-gradient(90deg,#118ab2,#ef476f)" }}>98%</div>
-              <div style={styles.kvText}>
-                <div style={styles.kvLabel}>Pilot satisfaction</div>
-                <div style={styles.kvSub}>Teachers & classrooms</div>
+            <div style={styles.kv} className="about-hero-kv">
+              <div style={{ ...styles.kvNum, background: "linear-gradient(90deg,#118ab2,#ef476f)" }} className="about-hero-kv-num">98%</div>
+              <div style={styles.kvText} className="about-hero-kv-text">
+                <div style={styles.kvLabel} className="about-hero-kv-label">Pilot satisfaction</div>
+                <div style={styles.kvSub} className="about-hero-kv-sub">Teachers & classrooms</div>
               </div>
             </div>
           </div>
 
-          <div style={styles.ctaRow}>
+          <div style={styles.ctaRow} className="about-hero-cta-row">
             <button
-              className="about-cta btn-primary"
+              className="about-cta btn-primary about-hero-primary"
               style={styles.primary}
               onClick={() => (window.location.hash = "#get-started")}
               aria-label="Get started"
@@ -83,7 +250,7 @@ export default function AboutHero() {
             </button>
 
             <a
-              className="about-cta"
+              className="about-cta about-hero-secondary"
               href="#our-mission"
               style={styles.secondary}
               onClick={(e) => { e.preventDefault(); window.location.hash = "#our-mission"; }}
@@ -95,15 +262,15 @@ export default function AboutHero() {
         </div>
 
         {/* Right: visual illustration */}
-        <div style={styles.right} className="about-visual" aria-hidden>
-          <div style={styles.card} className="about-card" role="img" aria-label="Illustration showing playful learning">
+        <div style={styles.right} className="about-hero-right about-visual" aria-hidden>
+          <div style={styles.card} className="about-hero-card about-card" role="img" aria-label="Illustration showing playful learning">
             {/* floating circles to suggest rolling balls */}
-            <div style={styles.visualArea}>
-              <div style={{ ...styles.circle, background: "#FFD166", left: "12%", top: "28%", animationDelay: "0s" }}>5</div>
-              <div style={{ ...styles.circle, background: "#06D6A0", left: "44%", top: "12%", animationDelay: "0.3s" }}>3</div>
-              <div style={{ ...styles.circle, background: "#118AB2", left: "72%", top: "36%", animationDelay: "0.6s" }}>8</div>
+            <div style={styles.visualArea} className="about-hero-visual-area">
+              <div style={{ ...styles.circle, background: "#FFD166", left: "12%", top: "28%", animationDelay: "0s" }} className="about-hero-circle">5</div>
+              <div style={{ ...styles.circle, background: "#06D6A0", left: "44%", top: "12%", animationDelay: "0.3s" }} className="about-hero-circle">3</div>
+              <div style={{ ...styles.circle, background: "#118AB2", left: "72%", top: "36%", animationDelay: "0.6s" }} className="about-hero-circle">8</div>
 
-              <div style={styles.visualText}>
+              <div style={styles.visualText} className="about-hero-visual-text">
                 <strong>Rolling Math</strong>
                 <div style={{ marginTop: 6, color: "rgba(4,34,58,0.65)", fontSize: 13 }}>
                   Collisions reveal quick math facts — learn while you play.
