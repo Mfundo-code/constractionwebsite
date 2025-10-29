@@ -44,28 +44,187 @@ export default function MissionSection() {
   ];
 
   return (
-    <section style={styles.section} aria-labelledby="mission-title">
-      <style>{`
-        @keyframes floatSoft { 0% { transform: translateY(0);} 50% { transform: translateY(-6px);} 100% { transform: translateY(0);} }
-        @keyframes popIn { from { opacity: 0; transform: translateY(8px) scale(.995);} to { opacity: 1; transform: translateY(0) scale(1);} }
-
-        /* responsive layout */
-        @media (max-width: 900px) {
-          .mission-grid { grid-template-columns: 1fr; gap: 20px; }
-          .mission-pillars { grid-template-columns: repeat(2,1fr); }
+    <section style={styles.section} aria-labelledby="mission-title" className="mission-section">
+      <style jsx>{`
+        @keyframes floatSoft { 
+          0% { transform: translateY(0);} 
+          50% { transform: translateY(-6px);} 
+          100% { transform: translateY(0);} 
         }
-        @media (max-width: 560px) {
-          .mission-pillars { grid-template-columns: 1fr; }
+        @keyframes popIn { 
+          from { opacity: 0; transform: translateY(8px) scale(.995);} 
+          to { opacity: 1; transform: translateY(0) scale(1);} 
+        }
+
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+          .mission-section {
+            padding: 3.5rem 1.5rem !important;
+          }
+
+          .mission-container {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+
+          .mission-header {
+            grid-column: 1 / -1 !important;
+            text-align: center !important;
+          }
+
+          .mission-lead {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .mission-right {
+            grid-column: 1 / -1 !important;
+          }
+
+          .mission-pillars {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+
+          .mission-decor {
+            right: -15% !important;
+            top: -5% !important;
+            width: 80% !important;
+          }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+          .mission-section {
+            padding: 3rem 1.25rem !important;
+          }
+
+          .mission-title {
+            font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+          }
+
+          .mission-lead {
+            font-size: 1rem !important;
+            max-width: 480px !important;
+          }
+
+          .mission-pillars {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+
+          .mission-pillar {
+            min-height: auto !important;
+            padding: 1.25rem !important;
+          }
+
+          .mission-footer-row {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 1rem !important;
+            text-align: center !important;
+          }
+
+          .mission-footer-text {
+            max-width: 100% !important;
+          }
+
+          .mission-footer-actions {
+            justify-content: center !important;
+            width: 100% !important;
+          }
+
+          .mission-primary, 
+          .mission-link {
+            width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+          }
+
+          .mission-decor {
+            display: none !important;
+          }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+          .mission-section {
+            padding: 2.5rem 1rem !important;
+          }
+
+          .mission-container {
+            gap: 2rem !important;
+          }
+
+          .mission-title {
+            font-size: 1.75rem !important;
+          }
+
+          .mission-lead {
+            font-size: 0.9rem !important;
+            padding: 0 0.5rem !important;
+          }
+
+          .mission-pillar {
+            padding: 1rem !important;
+            flex-direction: column !important;
+            text-align: center !important;
+            align-items: center !important;
+          }
+
+          .mission-icon-wrap {
+            margin-bottom: 0.5rem !important;
+          }
+
+          .mission-footer-text {
+            font-size: 0.9rem !important;
+          }
+
+          .mission-primary {
+            padding: 12px 16px !important;
+            font-size: 14px !important;
+          }
+
+          .mission-link {
+            padding: 10px 12px !important;
+            font-size: 13px !important;
+          }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+          .mission-container {
+            max-width: 1300px !important;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .mission-pillar {
+            animation: none !important;
+          }
+          
+          .mission-icon-circle {
+            animation: none !important;
+          }
         }
 
         /* hover lift for pointer devices */
         @media (hover:hover) and (pointer:fine) {
-          .pillar-card:hover { transform: translateY(-8px); box-shadow: 0 28px 72px rgba(2,6,23,0.12); }
+          .pillar-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 28px 72px rgba(2,6,23,0.12); 
+          }
         }
       `}</style>
 
       {/* soft decorative shape */}
-      <svg aria-hidden viewBox="0 0 800 400" preserveAspectRatio="none" style={styles.decor}>
+      <svg 
+        aria-hidden 
+        viewBox="0 0 800 400" 
+        preserveAspectRatio="none" 
+        style={styles.decor}
+        className="mission-decor"
+      >
         <defs>
           <linearGradient id="mG" x1="0" x2="1">
             <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.08" />
@@ -75,54 +234,63 @@ export default function MissionSection() {
         <path d="M0 160 C140 60 320 220 520 120 C680 52 760 180 900 86 L900 400 L0 400 Z" fill="url(#mG)" />
       </svg>
 
-      <div style={styles.container} className="mission-grid">
-        <header style={styles.header}>
-          <h2 id="mission-title" style={styles.title}>Our mission</h2>
-          <p style={styles.lead}>
+      <div style={styles.container} className="mission-container mission-grid">
+        <header style={styles.header} className="mission-header">
+          <h2 id="mission-title" style={styles.title} className="mission-title">Our mission</h2>
+          <p style={styles.lead} className="mission-lead">
             We design playful, research-backed learning tools that make early math & coding approachable
             and delightful — for kids, teachers and parents.
           </p>
         </header>
 
-        <div style={styles.right}>
+        <div style={styles.right} className="mission-right">
           <div style={styles.pillars} className="mission-pillars" role="list" aria-label="Mission pillars">
             {pillars.map((p, i) => (
               <article
                 key={p.id}
                 role="listitem"
-                className="pillar-card"
+                className="pillar-card mission-pillar"
                 aria-labelledby={`pillar-${p.id}-title`}
                 style={{
                   ...styles.pillar,
                   animation: `popIn 420ms cubic-bezier(.2,.9,.25,1) ${i * 80}ms both`,
                 }}
               >
-                <div style={{ ...styles.iconWrap, boxShadow: `0 12px 32px ${hexToRgba(p.color, 0.12)}` }}>
-                  <div style={{ ...styles.iconCircle, color: p.color }}>{p.icon}</div>
+                <div 
+                  style={{ ...styles.iconWrap, boxShadow: `0 12px 32px ${hexToRgba(p.color, 0.12)}` }} 
+                  className="mission-icon-wrap"
+                >
+                  <div style={{ ...styles.iconCircle, color: p.color }} className="mission-icon-circle">{p.icon}</div>
                 </div>
 
-                <div style={styles.pillarBody}>
-                  <h3 id={`pillar-${p.id}-title`} style={styles.pillarTitle}>{p.title}</h3>
-                  <p style={styles.pillarDesc}>{p.desc}</p>
+                <div style={styles.pillarBody} className="mission-pillar-body">
+                  <h3 id={`pillar-${p.id}-title`} style={styles.pillarTitle} className="mission-pillar-title">{p.title}</h3>
+                  <p style={styles.pillarDesc} className="mission-pillar-desc">{p.desc}</p>
                 </div>
               </article>
             ))}
           </div>
 
-          <div style={styles.footerRow}>
-            <p style={styles.footerText}>
+          <div style={styles.footerRow} className="mission-footer-row">
+            <p style={styles.footerText} className="mission-footer-text">
               Want to bring this to your classroom? We offer teacher-friendly plans and free pilots for schools.
             </p>
 
-            <div style={styles.footerActions}>
+            <div style={styles.footerActions} className="mission-footer-actions">
               <button
                 style={styles.primary}
+                className="mission-primary"
                 onClick={() => (window.location.hash = "#get-started")}
                 aria-label="Get started"
               >
                 ▶ Get started
               </button>
-              <a href="#contact" style={styles.link} onClick={(e) => { e.preventDefault(); window.location.hash = "#contact"; }}>
+              <a 
+                href="#contact" 
+                style={styles.link} 
+                className="mission-link"
+                onClick={(e) => { e.preventDefault(); window.location.hash = "#contact"; }}
+              >
                 Contact sales →
               </a>
             </div>
@@ -260,7 +428,11 @@ const styles = {
     fontSize: 14,
     maxWidth: 420,
   },
-  footerActions: { display: "flex", gap: 10, alignItems: "center" },
+  footerActions: { 
+    display: "flex", 
+    gap: 10, 
+    alignItems: "center" 
+  },
   primary: {
     background: "linear-gradient(90deg,#7c3aed,#06d6a0)",
     color: "#fff",
