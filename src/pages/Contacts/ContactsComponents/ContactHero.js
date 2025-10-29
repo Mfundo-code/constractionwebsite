@@ -2,60 +2,167 @@ import React from "react";
 
 const ContactHero = () => {
   return (
-    <section style={styles.section}>
-      <div style={styles.container}>
-        <div style={styles.content}>
-          <h1 style={styles.title}>Get in Touch</h1>
-          <p style={styles.subtitle}>
-            Ready to bring digital learning to your community? We're here to help 
-            transform education through technology and empower the next generation.
-          </p>
-          <div style={styles.stats}>
-            <div style={styles.statItem}>
-              <div style={styles.statNumber}>42+</div>
-              <div style={styles.statLabel}>Communities Reached</div>
-            </div>
-            <div style={styles.statItem}>
-              <div style={styles.statNumber}>24h</div>
-              <div style={styles.statLabel}>Response Time</div>
-            </div>
-            <div style={styles.statItem}>
-              <div style={styles.statNumber}>100%</div>
-              <div style={styles.statLabel}>Dedicated Support</div>
-            </div>
-          </div>
-        </div>
-        
-        <div style={styles.imageContainer}>
-          <img 
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-            alt="Children learning together in a digital classroom"
-            style={styles.image}
-          />
-          <div style={styles.floatingCard}>
-            <div style={styles.cardIcon}>💬</div>
-            <div style={styles.cardContent}>
-              <div style={styles.cardTitle}>Quick Response</div>
-              <div style={styles.cardText}>We reply within 24 hours</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <section style={styles.section} className="contact-hero-section">
       <style jsx>{`
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        
-        @media (max-width: 768px) {
-          .contact-grid { 
-            grid-template-columns: 1fr; 
-            gap: 40px;
+
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+          .contact-hero-section {
+            padding: 3.5rem 1.5rem !important;
           }
-          .contact-image { order: -1; }
+
+          .contact-hero-container {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+
+          .contact-hero-content {
+            text-align: center !important;
+          }
+
+          .contact-hero-subtitle {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .contact-hero-stats {
+            justify-content: center !important;
+          }
+
+          .contact-hero-image {
+            order: -1 !important;
+            justify-content: center !important;
+          }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+          .contact-hero-section {
+            padding: 3rem 1.25rem !important;
+          }
+
+          .contact-hero-title {
+            font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+          }
+
+          .contact-hero-subtitle {
+            font-size: 1rem !important;
+            max-width: 480px !important;
+          }
+
+          .contact-hero-container {
+            gap: 2rem !important;
+          }
+
+          .contact-hero-stats {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 1.5rem !important;
+          }
+
+          .contact-hero-stat-item {
+            text-align: center !important;
+          }
+
+          .contact-hero-image-container {
+            height: 300px !important;
+          }
+
+          .contact-hero-floating-card {
+            display: none !important;
+          }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+          .contact-hero-section {
+            padding: 2.5rem 1rem !important;
+          }
+
+          .contact-hero-title {
+            font-size: 1.75rem !important;
+          }
+
+          .contact-hero-subtitle {
+            font-size: 0.9rem !important;
+            padding: 0 0.5rem !important;
+          }
+
+          .contact-hero-stats {
+            gap: 1rem !important;
+          }
+
+          .contact-hero-stat-number {
+            font-size: 1.5rem !important;
+          }
+
+          .contact-hero-stat-label {
+            font-size: 0.8rem !important;
+          }
+
+          .contact-hero-image-container {
+            height: 250px !important;
+          }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+          .contact-hero-container {
+            max-width: 1300px !important;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .contact-hero-container {
+            animation: none !important;
+          }
         }
       `}</style>
+
+      <div style={styles.container} className="contact-hero-container contact-grid">
+        <div style={styles.content} className="contact-hero-content">
+          <h1 style={styles.title} className="contact-hero-title">Get in Touch</h1>
+          <p style={styles.subtitle} className="contact-hero-subtitle">
+            Ready to bring digital learning to your community? We're here to help 
+            transform education through technology and empower the next generation.
+          </p>
+          <div style={styles.stats} className="contact-hero-stats">
+            <div style={styles.statItem} className="contact-hero-stat-item">
+              <div style={styles.statNumber} className="contact-hero-stat-number">42+</div>
+              <div style={styles.statLabel} className="contact-hero-stat-label">Communities Reached</div>
+            </div>
+            <div style={styles.statItem} className="contact-hero-stat-item">
+              <div style={styles.statNumber} className="contact-hero-stat-number">24h</div>
+              <div style={styles.statLabel} className="contact-hero-stat-label">Response Time</div>
+            </div>
+            <div style={styles.statItem} className="contact-hero-stat-item">
+              <div style={styles.statNumber} className="contact-hero-stat-number">100%</div>
+              <div style={styles.statLabel} className="contact-hero-stat-label">Dedicated Support</div>
+            </div>
+          </div>
+        </div>
+        
+        <div style={styles.imageContainer} className="contact-hero-image-container contact-image">
+          <img 
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+            alt="Children learning together in a digital classroom"
+            style={styles.image}
+            className="contact-hero-image"
+          />
+          <div style={styles.floatingCard} className="contact-hero-floating-card">
+            <div style={styles.cardIcon} className="contact-hero-card-icon">💬</div>
+            <div style={styles.cardContent} className="contact-hero-card-content">
+              <div style={styles.cardTitle} className="contact-hero-card-title">Quick Response</div>
+              <div style={styles.cardText} className="contact-hero-card-text">We reply within 24 hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

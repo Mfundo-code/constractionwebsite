@@ -24,20 +24,172 @@ const ContactForm = () => {
   };
 
   return (
-    <section style={styles.section}>
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <h2 style={styles.title}>Send us a Message</h2>
-          <p style={styles.subtitle}>
+    <section style={styles.section} className="contact-form-section">
+      <style jsx>{`
+        /* Tablet Styles */
+        @media (max-width: 1024px) {
+          .contact-form-section {
+            padding: 3.5rem 1.5rem !important;
+          }
+
+          .contact-form-container {
+            max-width: 100% !important;
+          }
+
+          .contact-form-header {
+            margin-bottom: 3rem !important;
+          }
+
+          .contact-form-form-container {
+            grid-template-columns: 1fr !important;
+            gap: 3rem !important;
+          }
+
+          .contact-form-title {
+            font-size: 2rem !important;
+          }
+
+          .contact-form-subtitle {
+            font-size: 1rem !important;
+            max-width: 500px !important;
+          }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+          .contact-form-section {
+            padding: 3rem 1.25rem !important;
+          }
+
+          .contact-form-title {
+            font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+          }
+
+          .contact-form-subtitle {
+            font-size: 1rem !important;
+            max-width: 480px !important;
+          }
+
+          .contact-form-form-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+
+          .contact-form-form-container {
+            gap: 2.5rem !important;
+          }
+
+          .contact-form-info-card {
+            padding: 1.5rem !important;
+          }
+
+          .contact-form-submit-button {
+            width: 100% !important;
+            text-align: center !important;
+          }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+          .contact-form-section {
+            padding: 2.5rem 1rem !important;
+          }
+
+          .contact-form-header {
+            margin-bottom: 2.5rem !important;
+          }
+
+          .contact-form-title {
+            font-size: 1.75rem !important;
+          }
+
+          .contact-form-subtitle {
+            font-size: 0.9rem !important;
+            padding: 0 0.5rem !important;
+          }
+
+          .contact-form-form-container {
+            gap: 2rem !important;
+          }
+
+          .contact-form-info-card {
+            padding: 1.25rem !important;
+          }
+
+          .contact-form-input,
+          .contact-form-select,
+          .contact-form-textarea {
+            padding: 10px 12px !important;
+            font-size: 0.9rem !important;
+          }
+
+          .contact-form-contact-item {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.5rem !important;
+            text-align: center !important;
+          }
+
+          .contact-form-contact-icon {
+            width: 100% !important;
+            text-align: center !important;
+          }
+
+          .contact-form-hour-item {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 0.25rem !important;
+          }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+          .contact-form-container {
+            max-width: 1300px !important;
+          }
+        }
+
+        /* Focus states for accessibility */
+        .contact-form-input:focus,
+        .contact-form-select:focus,
+        .contact-form-textarea:focus {
+          outline: 2px solid rgba(124,58,237,0.3) !important;
+          outline-offset: 2px !important;
+          border-color: #7c3aed !important;
+        }
+
+        /* Hover effects for non-touch devices */
+        @media (hover: hover) and (pointer: fine) {
+          .contact-form-submit-button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(124,58,237,0.3) !important;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .contact-form-input,
+          .contact-form-select,
+          .contact-form-textarea,
+          .contact-form-submit-button {
+            transition: none !important;
+          }
+        }
+      `}</style>
+
+      <div style={styles.container} className="contact-form-container">
+        <div style={styles.header} className="contact-form-header">
+          <h2 style={styles.title} className="contact-form-title">Send us a Message</h2>
+          <p style={styles.subtitle} className="contact-form-subtitle">
             Whether you're a school, community leader, or volunteer, we'd love to hear from you.
           </p>
         </div>
 
-        <div style={styles.formContainer}>
-          <form onSubmit={handleSubmit} style={styles.form}>
-            <div style={styles.formGrid}>
-              <div style={styles.formGroup}>
-                <label htmlFor="name" style={styles.label}>
+        <div style={styles.formContainer} className="contact-form-form-container">
+          <form onSubmit={handleSubmit} style={styles.form} className="contact-form-form">
+            <div style={styles.formGrid} className="contact-form-form-grid">
+              <div style={styles.formGroup} className="contact-form-form-group">
+                <label htmlFor="name" style={styles.label} className="contact-form-label">
                   Full Name *
                 </label>
                 <input
@@ -48,12 +200,13 @@ const ContactForm = () => {
                   onChange={handleChange}
                   required
                   style={styles.input}
+                  className="contact-form-input"
                   placeholder="Enter your full name"
                 />
               </div>
 
-              <div style={styles.formGroup}>
-                <label htmlFor="email" style={styles.label}>
+              <div style={styles.formGroup} className="contact-form-form-group">
+                <label htmlFor="email" style={styles.label} className="contact-form-label">
                   Email Address *
                 </label>
                 <input
@@ -64,13 +217,14 @@ const ContactForm = () => {
                   onChange={handleChange}
                   required
                   style={styles.input}
+                  className="contact-form-input"
                   placeholder="Enter your email address"
                 />
               </div>
             </div>
 
-            <div style={styles.formGroup}>
-              <label htmlFor="subject" style={styles.label}>
+            <div style={styles.formGroup} className="contact-form-form-group">
+              <label htmlFor="subject" style={styles.label} className="contact-form-label">
                 Subject *
               </label>
               <input
@@ -81,12 +235,13 @@ const ContactForm = () => {
                 onChange={handleChange}
                 required
                 style={styles.input}
+                className="contact-form-input"
                 placeholder="What is this regarding?"
               />
             </div>
 
-            <div style={styles.formGroup}>
-              <label htmlFor="interest" style={styles.label}>
+            <div style={styles.formGroup} className="contact-form-form-group">
+              <label htmlFor="interest" style={styles.label} className="contact-form-label">
                 I'm interested in
               </label>
               <select
@@ -95,6 +250,7 @@ const ContactForm = () => {
                 value={formData.interest}
                 onChange={handleChange}
                 style={styles.select}
+                className="contact-form-select"
               >
                 <option value="">Select an option</option>
                 <option value="partnership">Partnership Opportunities</option>
@@ -105,8 +261,8 @@ const ContactForm = () => {
               </select>
             </div>
 
-            <div style={styles.formGroup}>
-              <label htmlFor="message" style={styles.label}>
+            <div style={styles.formGroup} className="contact-form-form-group">
+              <label htmlFor="message" style={styles.label} className="contact-form-label">
                 Message *
               </label>
               <textarea
@@ -117,55 +273,56 @@ const ContactForm = () => {
                 required
                 rows="6"
                 style={styles.textarea}
+                className="contact-form-textarea"
                 placeholder="Tell us about your interest in digital education..."
               />
             </div>
 
-            <button type="submit" style={styles.submitButton}>
+            <button type="submit" style={styles.submitButton} className="contact-form-submit-button">
               Send Message
             </button>
           </form>
 
-          <div style={styles.infoCard}>
-            <h3 style={styles.infoTitle}>Other Ways to Reach Us</h3>
+          <div style={styles.infoCard} className="contact-form-info-card">
+            <h3 style={styles.infoTitle} className="contact-form-info-title">Other Ways to Reach Us</h3>
             
-            <div style={styles.contactItem}>
-              <div style={styles.contactIcon}>📧</div>
-              <div style={styles.contactDetails}>
-                <div style={styles.contactLabel}>Email us at</div>
-                <div style={styles.contactValue}>hello@digitallearning.org</div>
+            <div style={styles.contactItem} className="contact-form-contact-item">
+              <div style={styles.contactIcon} className="contact-form-contact-icon">📧</div>
+              <div style={styles.contactDetails} className="contact-form-contact-details">
+                <div style={styles.contactLabel} className="contact-form-contact-label">Email us at</div>
+                <div style={styles.contactValue} className="contact-form-contact-value">hello@digitallearning.org</div>
               </div>
             </div>
 
-            <div style={styles.contactItem}>
-              <div style={styles.contactIcon}>📞</div>
-              <div style={styles.contactDetails}>
-                <div style={styles.contactLabel}>Call us</div>
-                <div style={styles.contactValue}>+27 11 123 4567</div>
+            <div style={styles.contactItem} className="contact-form-contact-item">
+              <div style={styles.contactIcon} className="contact-form-contact-icon">📞</div>
+              <div style={styles.contactDetails} className="contact-form-contact-details">
+                <div style={styles.contactLabel} className="contact-form-contact-label">Call us</div>
+                <div style={styles.contactValue} className="contact-form-contact-value">+27 11 123 4567</div>
               </div>
             </div>
 
-            <div style={styles.contactItem}>
-              <div style={styles.contactIcon}>🕒</div>
-              <div style={styles.contactDetails}>
-                <div style={styles.contactLabel}>Response time</div>
-                <div style={styles.contactValue}>Within 24 hours</div>
+            <div style={styles.contactItem} className="contact-form-contact-item">
+              <div style={styles.contactIcon} className="contact-form-contact-icon">🕒</div>
+              <div style={styles.contactDetails} className="contact-form-contact-details">
+                <div style={styles.contactLabel} className="contact-form-contact-label">Response time</div>
+                <div style={styles.contactValue} className="contact-form-contact-value">Within 24 hours</div>
               </div>
             </div>
 
-            <div style={styles.divider}></div>
+            <div style={styles.divider} className="contact-form-divider"></div>
 
-            <h4 style={styles.infoSubtitle}>Office Hours</h4>
-            <div style={styles.hours}>
-              <div style={styles.hourItem}>
+            <h4 style={styles.infoSubtitle} className="contact-form-info-subtitle">Office Hours</h4>
+            <div style={styles.hours} className="contact-form-hours">
+              <div style={styles.hourItem} className="contact-form-hour-item">
                 <span>Monday - Friday</span>
                 <span>8:00 AM - 5:00 PM</span>
               </div>
-              <div style={styles.hourItem}>
+              <div style={styles.hourItem} className="contact-form-hour-item">
                 <span>Saturday</span>
                 <span>9:00 AM - 1:00 PM</span>
               </div>
-              <div style={styles.hourItem}>
+              <div style={styles.hourItem} className="contact-form-hour-item">
                 <span>Sunday</span>
                 <span>Closed</span>
               </div>
